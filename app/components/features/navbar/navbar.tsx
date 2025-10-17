@@ -1,6 +1,6 @@
 import { ClapperboardIcon } from "lucide-react"
-import { buttonVariants } from "../ui/button"
-import { Input } from "../ui/input"
+import { buttonVariants } from "../../ui/button"
+import { Input } from "../../ui/input"
 import { NavLink } from "react-router"
 
 function Navbar() {
