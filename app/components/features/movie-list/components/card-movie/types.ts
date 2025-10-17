@@ -3,7 +3,8 @@ type CardMovieProps = {
 	voteAverage: string,
 	posterPath: string,
 	onFavorite: () => void,
-	isFavorite: boolean
+	isFavorite: boolean,
+	onClick: () => void
 }
 
 export type { CardMovieProps }
