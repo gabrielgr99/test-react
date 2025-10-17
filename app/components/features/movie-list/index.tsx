@@ -1,4 +1,4 @@
-import { CardMovieItem } from "./components/card-movie-item";
+import { CardMovie } from "./components/card-movie";
 import { Skeleton } from "~/components/ui/skeleton";
 import type { MovieListProps } from "./types";
 
@@ -10,7 +10,7 @@ export function MovieList({ movies, loading }: MovieListProps) {
 	return (
 		<ul className="flex gap-4 flex-wrap justify-center">
 			{movies.results.map(movie => (
-				<CardMovieItem
+				<CardMovie
 					key={movie.id}
 					title={movie.title}
 					posterPath={movie.poster_path}

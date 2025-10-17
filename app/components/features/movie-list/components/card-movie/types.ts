@@ -1,4 +1,4 @@
-type CardMovieItemProps = {
+type CardMovieProps = {
 	title: string,
 	voteAverage: string,
 	posterPath: string,
@@ -6,4 +6,4 @@ type CardMovieItemProps = {
 	isFavorite: boolean
 }
 
-export type { CardMovieItemProps }
+export type { CardMovieProps }

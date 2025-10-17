@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import type { CardMovieItemProps } from "./types";
+import type { CardMovieProps } from "./types";
 import { VoteAverage } from "~/components/ui/vote-average";
 import { HeartIcon } from "lucide-react";
 
-export function CardMovieItem({ title, voteAverage, posterPath, onFavorite, isFavorite }: CardMovieItemProps) {
+export function CardMovie({ title, voteAverage, posterPath, onFavorite, isFavorite }: CardMovieProps) {
 	return (
 		<li title={title}>
 			<Card className="p-0 border-0 w-[200px] h-max gap-0">
