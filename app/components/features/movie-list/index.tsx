@@ -19,7 +19,7 @@ export function MovieList({ movies, loading }: MovieListProps) {
 					onFavorite={() => {}}
 				/>
 			))}
-			{loading && Array(20).fill('').map(item => (
+			{loading && Array(20).fill('').map(() => (
 				<li>
 					<Skeleton className="w-[200px] h-[368px]" />
 				</li>

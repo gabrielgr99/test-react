@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import type { CardMovieProps } from "./types";
 import { VoteAverage } from "~/components/ui/vote-average";
-import { HeartIcon } from "lucide-react";
+import { HeartIcon } from "~/components/icons/heart-icon";
 
 export function CardMovie({ title, voteAverage, posterPath, onFavorite, isFavorite }: CardMovieProps) {
 	return (
@@ -9,10 +9,7 @@ export function CardMovie({ title, voteAverage, posterPath, onFavorite, isFavori
 			<Card className="p-0 border-0 w-[200px] h-max gap-0">
 				<CardContent className="p-0 relative">
 					<HeartIcon
-						size={22}
-						fill={isFavorite ? "red" : "transparent"}
-						color="red"
-						className="bg-background p-1 hover:p-0.5 m-2 duration-300 rounded-full absolute cursor-pointer right-0"
+						fill={isFavorite}
 						onClick={onFavorite}
 					/>
 					<img alt="Movie poster" className="rounded-t-md" src={posterPath} />
