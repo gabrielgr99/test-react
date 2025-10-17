@@ -3,13 +3,9 @@ import { Skeleton } from "~/components/ui/skeleton";
 import type { MovieListProps } from "./types";
 
 export function MovieList({ movies, loading }: MovieListProps) {
-	const hasMovies = movies.total_results > 0;
-
-	if (!loading && !hasMovies) return null;
-
 	return (
 		<ul className="flex gap-4 flex-wrap justify-center">
-			{movies.results.map(movie => (
+			{movies.map(movie => (
 				<CardMovie
 					key={movie.id}
 					title={movie.title}

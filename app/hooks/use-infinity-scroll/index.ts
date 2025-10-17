@@ -1,6 +1,7 @@
 import { useEffect } from "react";
+import type { UseInfinityScrollParams } from "./types";
 
-export function useInfinityScroll(onTrigger: () => void) {
+export function useInfinityScroll({ onTrigger }: UseInfinityScrollParams) {
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollTop = window.scrollY;

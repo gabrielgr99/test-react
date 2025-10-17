@@ -4,8 +4,8 @@ enum GET_MOVIES_SORT_BY {
 }
 
 type TGetMoviesParams = {
-	page: number,
-	sort_by: GET_MOVIES_SORT_BY
+	page?: number | null,
+	sort_by?: GET_MOVIES_SORT_BY | null
 }
 
 type MovieItem = {

@@ -1,34 +1,29 @@
-import { useEffect, useState } from "react";
-import { getMovies, type TGetMoviesResponse } from "~/api";
 import { MovieList } from "~/components/features/movie-list";
 import { PageBody } from "~/components/features/page-body/page-body";
-import { formatResults } from "~/mappers/format-movies";
-
-const INITIAL_VALUE: TGetMoviesResponse = {
-	page: 0,
-	results: [],
-	total_pages: 0,
-	total_results: 0
-}
+import { EmptyState } from "./components/empty-state";
+import { useMovies } from "./hooks/use-movies";
 
 export function HomeView() {
-	const [movies, setMovies] = useState<TGetMoviesResponse>(INITIAL_VALUE);
-	const [loading, setLoading] = useState<boolean>(true);
+	const {
+		data,
+		hasMovies,
+		isFetching,
+		refetch
+	} = useMovies();
 
-	useEffect(() => {
-		getMovies()
-			.then(data => setMovies({
-				...data,
-				results: formatResults(data.results)
-			}))
-			.finally(() => setLoading(false))
-	}, []);
+	if (!isFetching && !hasMovies) {
+		return (
+			<PageBody>
+				<EmptyState onClick={refetch} />
+			</PageBody>
+		);
+	}
 
 	return (
 		<PageBody>
 			<MovieList
-				movies={movies}
-				loading={loading}
+				movies={data}
+				loading={isFetching}
 			/>
 		</PageBody>
 	);
