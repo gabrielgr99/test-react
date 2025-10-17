@@ -18,7 +18,7 @@ export function CardMovie({ title, voteAverage, posterPath, onFavorite, isFavori
 					<img alt="Movie poster" className="rounded-t-md" src={posterPath} />
 				</CardContent>
 				<CardHeader className="p-3">
-					<CardTitle className="text-sm font-medium h-[2lh] line-clamp-2" title={title}>{title}</CardTitle>
+					<CardTitle className="text-sm font-medium overflow-hidden text-ellipsis text-nowrap" title={title}>{title}</CardTitle>
 					<VoteAverage voteAverage={voteAverage} />
 				</CardHeader>
 			</Card>
