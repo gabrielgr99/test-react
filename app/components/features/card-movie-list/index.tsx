@@ -1,0 +1,29 @@
+import { CardMovieItem } from "./components/card-movie-item";
+import { Skeleton } from "~/components/ui/skeleton";
+import type { CardMovieListProps } from "./types";
+
+export function CardMovieList({ movies, loading }: CardMovieListProps) {
+	const hasMovies = movies.total_results > 0;
+
+	if (!loading && !hasMovies) return null;
+
+	return (
+		<ul className="flex gap-4 flex-wrap justify-center">
+			{movies.results.map(movie => (
+				<CardMovieItem
+					key={movie.id}
+					title={movie.title}
+					posterPath={movie.poster_path}
+					voteAverage={movie.vote_average.toFixed(1)}
+					isFavorite={false}
+					onFavorite={() => {}}
+				/>
+			))}
+			{loading && Array(20).fill('').map(item => (
+				<li>
+					<Skeleton className="w-[200px] h-[368px]" />
+				</li>
+			))}
+		</ul>
+	);
+}
