@@ -1,6 +1,6 @@
 import type { TGetMoviesResponse } from "~/api";
 
-export type CardMovieListProps = {
+export type MovieListProps = {
 	movies: TGetMoviesResponse,
 	loading: boolean
 };

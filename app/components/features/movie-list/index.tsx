@@ -1,8 +1,8 @@
 import { CardMovieItem } from "./components/card-movie-item";
 import { Skeleton } from "~/components/ui/skeleton";
-import type { CardMovieListProps } from "./types";
+import type { MovieListProps } from "./types";
 
-export function CardMovieList({ movies, loading }: CardMovieListProps) {
+export function MovieList({ movies, loading }: MovieListProps) {
 	const hasMovies = movies.total_results > 0;
 
 	if (!loading && !hasMovies) return null;

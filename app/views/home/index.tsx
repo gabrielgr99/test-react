@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMovies, type TGetMoviesResponse } from "~/api";
-import { CardMovieList } from "~/components/features/card-movie-list";
+import { MovieList } from "~/components/features/movie-list";
 import { PageBody } from "~/components/features/page-body/page-body";
 import { formatResults } from "~/mappers/format-movies";
 
@@ -26,7 +26,7 @@ export function HomeView() {
 
 	return (
 		<PageBody>
-			<CardMovieList
+			<MovieList
 				movies={movies}
 				loading={loading}
 			/>
