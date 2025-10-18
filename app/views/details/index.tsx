@@ -6,7 +6,7 @@ import { MovieDetailsLoading } from "./components/movie-details-loading";
 import { useMovieDetails } from "./hooks/use-movie-details";
 
 
-export function MovieDetailsView() {
+export function DetailsView() {
 	const {
 		movie,
 		isFetching,
