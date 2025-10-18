@@ -1,5 +1,10 @@
+import { PageBody } from "~/components/features/page-body/page-body";
 import { HomeView } from "../../views/home";
 
 export default function Home() {
-  return <HomeView />;
+	return (
+		<PageBody>
+			<HomeView />
+		</PageBody>
+	);
 }

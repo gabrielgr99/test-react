@@ -1,11 +1,11 @@
-enum GET_MOVIES_SORT_BY {
-	POPULARITY_DESC = 'popularity.desc',
-	POPULARITY_ASC = 'popularity.asc'
+enum GET_MOVIES_LANGUAGES {
+	EN_US = 'en_US',
+	PT_BR = 'pt_BR'
 }
 
 type TGetMoviesParams = {
 	page?: number | null,
-	sort_by?: GET_MOVIES_SORT_BY | null
+	language?: GET_MOVIES_LANGUAGES | null
 }
 
 type MovieItem = {
@@ -25,5 +25,5 @@ type TGetMoviesResponse = {
 export {
 	type TGetMoviesParams,
 	type TGetMoviesResponse,
-	GET_MOVIES_SORT_BY
+	GET_MOVIES_LANGUAGES
 };

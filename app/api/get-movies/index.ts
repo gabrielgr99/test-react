@@ -1,11 +1,11 @@
 import { apiClient } from "../client";
-import { GET_MOVIES_SORT_BY, type TGetMoviesParams, type TGetMoviesResponse } from "./types";
+import { GET_MOVIES_LANGUAGES, type TGetMoviesParams, type TGetMoviesResponse } from "./types";
 
 const getMovies = async (params?: TGetMoviesParams): Promise<TGetMoviesResponse> => (
-	await apiClient.get('/discover/movie', {
+	await apiClient.get('/movie/popular', {
 		params: {
 			page: 1,
-			sort_by: GET_MOVIES_SORT_BY.POPULARITY_DESC,
+			language: GET_MOVIES_LANGUAGES.PT_BR,
 			...params
 		}
 	})

@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getMovies } from "~/api";
 import { useInfinityScroll } from "~/hooks/use-infinity-scroll";
-import { formatResults } from "~/mappers/format-movies";
+import { formatResults } from "~/views/home/mappers/format-movies";
 
 export function useMovies() {
 	const {
@@ -16,7 +16,9 @@ export function useMovies() {
 		getNextPageParam: (lastPage) => lastPage.page + 1,
 		select: (data) => formatResults(data.pages.flatMap(page => page.results)),
 		initialPageParam: 1,
-		initialData: { pageParams: [], pages: [] }
+		initialData: { pageParams: [], pages: [] },
+		refetchOnWindowFocus: false,
+		retryDelay: 5000,
 	});
 
 	const goToNextPage = () => {
