@@ -29,7 +29,7 @@ export function CardMovie({
 					{iconName === 'trash' && (
 						<Trash2Icon
 							size={22}
-							color='grey'
+							color='white'
 							className="bg-background p-1 hover:p-0.5 m-2 duration-300 rounded-full absolute cursor-pointer right-0"
 							onClick={onRemoveFavorite}
 						/>

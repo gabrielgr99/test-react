@@ -23,7 +23,7 @@ export function FavoritesView() {
 			</h2>
 
 			<MediaList
-				loading
+				loading={isFetching}
 				medias={movies}
 				onRedirect={onRedirect}
 				onRemoveFavorite={onRemoveFavoriteMovie}
