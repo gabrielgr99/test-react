@@ -1,27 +1,49 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import { getMovieById, type TGetMovieByIdResponse } from "~/api";
+import { getMovieById } from "~/api";
 import { formatMovie } from "./mappers/format-movie";
 import { VoteAverage } from "~/components/ui/vote-average";
 import { Button } from "~/components/ui/button";
 import { HeartIcon } from "lucide-react";
+import { ErrorState } from "~/components/features/error-state";
+import { MovieDetailsLoading } from "./components/movie-details-loading";
 
 
 export function MovieDetailsView() {
 	const { movieId } = useParams();
 
-	const { data, isFetching } = useQuery({
+	const { data, isFetching, refetch } = useQuery({
 		queryKey: ['get-movie-by-id', movieId],
 		queryFn: () => getMovieById(movieId ?? ''),
 		select: (data) => formatMovie(data),
-		enabled: !!movieId
+		enabled: !!movieId,
+		refetchOnWindowFocus: false,
+		retryDelay: 5000
 	})
 
-	if (!isFetching && !data) return <></>;
+	if (isFetching) {
+		return <MovieDetailsLoading />;
+	};
+
+	if (!isFetching && !data) {
+		return <ErrorState onClick={refetch} />
+	};
 
 	return (
 		<article className="flex gap-8">
-			<img alt="Movie poster" src={data?.backdrop_path} className="flex-1 rounded-lg object-cover" />
+			<div className="bg-accent animate-pulse flex-1 rounded-lg h-[360px]">
+				<img
+					alt="Movie poster"
+					src={data?.backdrop_path}
+					className="w-full h-full rounded-lg object-cover opacity-0"
+					onLoad={(event) => {
+						event.target.style.opacity = 1;
+						event.target.parentNode.style.animation = 'none';
+						event.target.parentNode.style.height = 'auto';
+					}}
+					loading="lazy"
+				/>
+			</div>
 
 			<section className="flex-1">
 				<h2 className="scroll-m-20 mb-4 text-3xl font-bold tracking-tight first:mt-0">
