@@ -1,5 +1,5 @@
 import { MovieList } from "~/components/features/movie-list";
-import { EmptyState } from "./components/empty-state";
+import { ErrorState } from "../../components/features/error-state";
 import { useMovies } from "./hooks/use-movies";
 
 export function HomeView() {
@@ -11,7 +11,7 @@ export function HomeView() {
 	} = useMovies();
 
 	if (!isFetching && !hasMovies) {
-		return <EmptyState onClick={refetch} />
+		return <ErrorState onClick={refetch} />
 	}
 
 	return (

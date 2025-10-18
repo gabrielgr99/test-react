@@ -1,8 +1,8 @@
 import { Button } from "~/components/ui/button";
-import type { EmptyStateProps } from "./types";
+import type { ErrorStateProps } from "./types";
 import { ClapperboardIcon } from "lucide-react";
 
-export function EmptyState({ onClick }: EmptyStateProps) {
+export function ErrorState({ onClick }: ErrorStateProps) {
 	return (
 		<section className="flex flex-col items-center gap-6 mt-36">
 			<ClapperboardIcon size={48} className="text-[#7d72ad]"/>
