@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { getMovieById } from "~/api";
-import { formatMovie } from "./mappers/format-movie";
+import { formatMovieResponse } from "./mappers/format-movie-response";
 import { VoteAverage } from "~/components/ui/vote-average";
 import { Button } from "~/components/ui/button";
 import { HeartIcon } from "lucide-react";
@@ -15,7 +15,7 @@ export function MovieDetailsView() {
 	const { data, isFetching, refetch } = useQuery({
 		queryKey: ['get-movie-by-id', movieId],
 		queryFn: () => getMovieById(movieId ?? ''),
-		select: (data) => formatMovie(data),
+		select: (data) => formatMovieResponse(data),
 		enabled: !!movieId,
 		refetchOnWindowFocus: false,
 		retryDelay: 5000

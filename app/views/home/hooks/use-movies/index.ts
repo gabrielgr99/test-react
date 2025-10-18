@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getMovies } from "~/api";
 import { useInfinityScroll } from "~/hooks/use-infinity-scroll";
-import { formatResults } from "~/views/home/mappers/format-movies";
+import { formatResultsResponse } from "~/views/home/mappers/format-results-response";
 
 export function useMovies() {
 	const {
@@ -14,7 +14,7 @@ export function useMovies() {
 		queryKey: ["get-movies-explorer"],
 		queryFn: ({ pageParam = 1 }) => getMovies({ page: pageParam }),
 		getNextPageParam: (lastPage) => lastPage.page + 1,
-		select: (data) => formatResults(data.pages.flatMap(page => page.results)),
+		select: (data) => formatResultsResponse(data.pages.flatMap(page => page.results)),
 		initialPageParam: 1,
 		initialData: { pageParams: [], pages: [] },
 		refetchOnWindowFocus: false,
