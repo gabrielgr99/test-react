@@ -9,7 +9,8 @@ export function HomeView() {
 		isFetching,
 		refetch,
 		onRedirect,
-		onFavoriteMovie
+		onAddFavoriteMovie,
+		onRemoveFavoriteMovie
 	} = useMovies();
 
 	if (!isFetching && !hasMovies) {
@@ -21,7 +22,8 @@ export function HomeView() {
 			medias={data}
 			loading={isFetching}
 			onRedirect={onRedirect}
-			onFavorite={onFavoriteMovie}
+			onAddFavorite={onAddFavoriteMovie}
+			onRemoveFavorite={onRemoveFavoriteMovie}
 		/>
 	);
 }

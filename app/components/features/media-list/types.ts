@@ -1,14 +1,16 @@
-type Media = {
+type MediaItem = {
 	id: number,
 	title: string,
 	poster_path: string,
 	vote_average: number,
-	favorite: boolean
+	favorite?: boolean
 }
 
 export type MediaListProps = {
-	medias: Media[],
+	medias: MediaItem[],
 	loading: boolean,
 	onRedirect: (mediaId: number) => void,
-	onFavorite: (mediaId: number) => void
+	onAddFavorite?: (mediaId: number) => void,
+	onRemoveFavorite: (mediaId: number) => void,
+	iconName?: 'trash' | 'heart'
 };

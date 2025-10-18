@@ -1,7 +1,4 @@
-enum GET_MOVIES_LANGUAGES {
-	EN_US = 'en_US',
-	PT_BR = 'pt_BR'
-}
+import type { GET_MOVIES_LANGUAGES } from "~/constants/languages"
 
 type GetPopularMoviesParams = {
 	page?: number | null,
@@ -24,6 +21,5 @@ type GetPopularMoviesResponse = {
 
 export {
 	type GetPopularMoviesParams,
-	type GetPopularMoviesResponse,
-	GET_MOVIES_LANGUAGES
+	type GetPopularMoviesResponse
 };

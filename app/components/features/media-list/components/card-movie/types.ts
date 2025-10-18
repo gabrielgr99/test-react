@@ -2,9 +2,11 @@ type CardMovieProps = {
 	title: string,
 	voteAverage: string,
 	posterPath: string,
-	onFavorite: () => void,
+	onAddFavorite?: () => void,
+	onRemoveFavorite: () => void,
 	isFavorite: boolean,
-	onClick: () => void
+	onClick: () => void,
+	iconName: 'trash' | 'heart'
 }
 
 export type { CardMovieProps }

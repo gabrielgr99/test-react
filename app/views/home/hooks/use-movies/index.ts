@@ -1,10 +1,10 @@
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { getPopularMovies, type GetPopularMoviesResponse } from "~/api";
 import { addFavoriteMovie } from "~/api/add-favorite-movie";
 import { useInfinityScroll } from "~/hooks/use-infinity-scroll";
-import { formatResults } from "~/views/home/mappers/format-results";
-import type { FormatResultsResponse } from "../../mappers/format-results/types";
+import { formatResults } from "../../mappers/format-results";
+import { getPopularMovies, type GetPopularMoviesResponse } from "~/api";
+import type { FormatResultsResponse } from "~/views/favorites/mappers/format-results/types";
 
 export function useMovies() {
 	const navigate = useNavigate();
@@ -30,9 +30,13 @@ export function useMovies() {
 		initialData: { pageParams: [], pages: [] }
 	});
 
-	const mutation = useMutation({ mutationFn: addFavoriteMovie	});
+	const mutationAddFavoriteMovie = useMutation({ mutationFn: addFavoriteMovie	});
 
-	const onFavoriteMovie = (movieId: number) => mutation.mutate(movieId);
+	const mutationRemoveFavoriteMovie = useMutation({ mutationFn: removeFavoriteMovie	});
+
+	const onAddFavoriteMovie = (movieId: number) => mutationAddFavoriteMovie.mutate(movieId);
+
+	const onRemoveFavoriteMovie = (movieId: number) => mutationRemoveFavoriteMovie.mutate(movieId);
 
 	const onRedirect = (movieId: number) => navigate(`/movie/${movieId}`);
 
@@ -52,6 +56,7 @@ export function useMovies() {
 		isFetching,
 		refetch,
 		onRedirect,
-		onFavoriteMovie
+		onAddFavoriteMovie,
+		onRemoveFavoriteMovie
 	}
 }

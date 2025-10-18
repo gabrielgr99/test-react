@@ -6,8 +6,16 @@ export function MediaList({
 	medias,
 	loading,
 	onRedirect,
-	onFavorite
+	onAddFavorite,
+	onRemoveFavorite,
+	iconName = 'heart'
 }: MediaListProps) {
+	const handleAddFavorite = (mediaId: number) => {
+		if (onAddFavorite) {
+			onAddFavorite(mediaId)
+		}
+	};
+
 	return (
 		<ul className="flex gap-4 flex-wrap justify-center">
 			{medias.map(media => (
@@ -16,9 +24,11 @@ export function MediaList({
 					title={media.title}
 					posterPath={media.poster_path}
 					voteAverage={media.vote_average.toFixed(1)}
-					isFavorite={media.favorite}
-					onFavorite={() => onFavorite(media.id)}
+					isFavorite={!!media.favorite}
+					onAddFavorite={() => handleAddFavorite(media.id)}
+					onRemoveFavorite={() => onRemoveFavorite(media.id)}
 					onClick={() => onRedirect(media.id)}
+					iconName={iconName}
 				/>
 			))}
 			{loading && Array(20).fill('').map((_, index) => (
