@@ -1,11 +1,15 @@
-import { apiClient } from "../api-client";
+import { safeTransaction } from "../indexed-db-client";
 
-const removeFavoriteMovie = async (movieId: number): Promise<void> => (
-	await apiClient.post(`/account/${import.meta.env.VITE_TMDB_ACCOUNT_ID}/favorite`, {
-		media_type: 'movie',
-		favorite: false,
-		media_id: movieId
-	})
-).data;
+const removeFavoriteMovie = async (movieId: number) => {
+	const store = await safeTransaction('readwrite');
+
+	if (store) {
+		return new Promise((resolve, reject) => {
+			const request = store.delete(movieId);
+			request.onsuccess = () => resolve(request.result);
+			request.onerror = () => reject(request.error);
+		});
+	}
+};
 
 export { removeFavoriteMovie };

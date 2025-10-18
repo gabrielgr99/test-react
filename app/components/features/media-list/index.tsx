@@ -1,6 +1,6 @@
 import { CardMovie } from "./components/card-movie";
 import { Skeleton } from "~/components/ui/skeleton";
-import type { MediaListProps } from "./types";
+import type { MediaItem, MediaListProps } from "./types";
 
 export function MediaList({
 	medias,
@@ -10,7 +10,7 @@ export function MediaList({
 	onRemoveFavorite,
 	iconName = 'heart'
 }: MediaListProps) {
-	const handleAddFavorite = (mediaId: number) => {
+	const handleAddFavorite = (mediaId: MediaItem) => {
 		if (onAddFavorite) {
 			onAddFavorite(mediaId)
 		}
@@ -18,14 +18,14 @@ export function MediaList({
 
 	return (
 		<ul className="flex gap-4 flex-wrap">
-			{medias.map(media => (
+			{medias.map(({ favorite, ...media }) => (
 				<CardMovie
 					key={media.id}
 					title={media.title}
 					posterPath={media.poster_path}
 					voteAverage={media.vote_average.toFixed(1)}
-					isFavorite={!!media.favorite}
-					onAddFavorite={() => handleAddFavorite(media.id)}
+					isFavorite={!!favorite}
+					onAddFavorite={() => handleAddFavorite(media)}
 					onRemoveFavorite={() => onRemoveFavorite(media.id)}
 					onClick={() => onRedirect(media.id)}
 					iconName={iconName}

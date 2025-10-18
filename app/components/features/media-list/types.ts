@@ -6,11 +6,13 @@ type MediaItem = {
 	favorite?: boolean
 }
 
-export type MediaListProps = {
+type MediaListProps = {
 	medias: MediaItem[],
 	loading: boolean,
 	onRedirect: (mediaId: number) => void,
-	onAddFavorite?: (mediaId: number) => void,
+	onAddFavorite?: (media: MediaItem) => void,
 	onRemoveFavorite: (mediaId: number) => void,
 	iconName?: 'trash' | 'heart'
 };
+
+export type { MediaItem, MediaListProps };

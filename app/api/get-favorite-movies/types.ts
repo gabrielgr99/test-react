@@ -16,10 +16,10 @@ type MovieItem = {
 }
 
 type GetFavoriteMoviesResponse = {
-	page: number,
-	total_pages: number,
-	total_results: number,
-	results: MovieItem[]
+	id: number,
+	title: string,
+	poster_path: string,
+	vote_average: number
 }
 
 export {
