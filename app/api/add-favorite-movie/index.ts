@@ -1,4 +1,4 @@
-import { apiClient } from "../client";
+import { apiClient } from "../api-client";
 
 const addFavoriteMovie = async (movieId: number): Promise<void> => (
 	await apiClient.post(`/account/${import.meta.env.VITE_TMDB_ACCOUNT_ID}/favorite`, {

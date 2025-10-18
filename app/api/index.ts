@@ -6,4 +6,4 @@ export * from './add-favorite-movie';
 export * from './remove-favorite-movie';
 export * from './get-favorite-movies';
 export * from './get-favorite-movies/types';
-export * from './client'
+export * from './api-client'

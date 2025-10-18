@@ -30,7 +30,7 @@ export function useMovies() {
 		initialData: { pageParams: [], pages: [] }
 	});
 
-	const mutationAddFavoriteMovie = useMutation({ mutationFn: addFavoriteMovie	});
+	const mutationAddFavoriteMovie = useMutation({ mutationFn: addFavoriteMovie });
 
 	const mutationRemoveFavoriteMovie = useMutation({ mutationFn: removeFavoriteMovie });
 

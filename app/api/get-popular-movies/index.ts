@@ -1,5 +1,5 @@
 import { GET_MOVIES_LANGUAGES } from "~/constants/languages";
-import { apiClient } from "../client";
+import { apiClient } from "../api-client";
 import { type GetPopularMoviesParams, type GetPopularMoviesResponse } from "./types";
 
 const getPopularMovies = async (params?: GetPopularMoviesParams): Promise<GetPopularMoviesResponse> => (

@@ -1,5 +1,5 @@
 import { GET_MOVIES_LANGUAGES } from "~/constants/languages";
-import { apiClient } from "../client";
+import { apiClient } from "../api-client";
 import {
 	GET_FAVORITE_MOVIES_PARAMS_SORT_BY,
 	type GetFavoriteMoviesParams,
