@@ -3,7 +3,7 @@ enum GET_MOVIES_LANGUAGES {
 	PT_BR = 'pt_BR'
 }
 
-type TGetMoviesParams = {
+type GetPopularMoviesParams = {
 	page?: number | null,
 	language?: GET_MOVIES_LANGUAGES | null
 }
@@ -15,7 +15,7 @@ type MovieItem = {
 	vote_average: number
 }
 
-type TGetMoviesResponse = {
+type GetPopularMoviesResponse = {
 	page: number,
 	total_pages: number,
 	total_results: number,
@@ -23,7 +23,7 @@ type TGetMoviesResponse = {
 }
 
 export {
-	type TGetMoviesParams,
-	type TGetMoviesResponse,
+	type GetPopularMoviesParams,
+	type GetPopularMoviesResponse,
 	GET_MOVIES_LANGUAGES
 };

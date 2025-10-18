@@ -1,4 +1,4 @@
-import { MovieList } from "~/components/features/movie-list";
+import { MediaList } from "~/components/features/media-list";
 import { ErrorState } from "../../components/features/error-state";
 import { useMovies } from "./hooks/use-movies";
 
@@ -7,7 +7,9 @@ export function HomeView() {
 		data,
 		hasMovies,
 		isFetching,
-		refetch
+		refetch,
+		onRedirect,
+		onFavoriteMovie
 	} = useMovies();
 
 	if (!isFetching && !hasMovies) {
@@ -15,9 +17,11 @@ export function HomeView() {
 	}
 
 	return (
-		<MovieList
-			movies={data}
+		<MediaList
+			medias={data}
 			loading={isFetching}
+			onRedirect={onRedirect}
+			onFavorite={onFavoriteMovie}
 		/>
 	);
 }

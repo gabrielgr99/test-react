@@ -3,7 +3,7 @@ type MovieGenre = {
 	name: string
 }
 
-type TGetMovieByIdResponse = {
+type GetMovieByIdResponse = {
 	backdrop_path: string,
 	title: string,
 	genres: MovieGenre[],
@@ -13,5 +13,5 @@ type TGetMovieByIdResponse = {
 }
 
 export {
-	type TGetMovieByIdResponse,
+	type GetMovieByIdResponse,
 };

@@ -32,7 +32,15 @@ export function meta({ }: Route.MetaArgs) {
 	];
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: 3,
+			retryDelay: 5000,
+			refetchOnWindowFocus: false
+		}
+	}
+});
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (

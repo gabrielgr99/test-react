@@ -1,7 +1,7 @@
 import { apiClient } from "../client";
-import { type TGetMovieByIdResponse } from "./types";
+import { type GetMovieByIdResponse } from "./types";
 
-const getMovieById = async (movieId: string): Promise<TGetMovieByIdResponse> => (
+const getMovieById = async (movieId: string): Promise<GetMovieByIdResponse> => (
 	await apiClient.get(`/movie/${movieId}`)
 ).data;
 
