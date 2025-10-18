@@ -19,8 +19,8 @@ export function MovieList({ movies, loading }: MovieListProps) {
 					onClick={() => navigate(`/movie/${movie.id}`)}
 				/>
 			))}
-			{loading && Array(20).fill('').map(() => (
-				<li>
+			{loading && Array(20).fill('').map((_, index) => (
+				<li key={index}>
 					<Skeleton className="w-[200px] h-[368px]" />
 				</li>
 			))}
