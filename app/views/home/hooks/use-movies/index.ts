@@ -46,12 +46,22 @@ export function useMovies() {
 		)
 	}
 
+	const onSuccessMutateRemoveFavoriteMovie = (movieId: number) => {
+		queryClient.setQueryData(
+			['get-favorite-movies'],
+			(oldData: GetFavoriteMoviesResponse[]) => oldData.filter(data => data.id !== movieId)
+		)
+	}
+
 	const mutationAddFavoriteMovie = useMutation({
 		mutationFn: addFavoriteMovie,
 		onSuccess: (_, movie) => onSuccessMutateAddFavoriteMovie(movie)
 	});
 
-	const mutationRemoveFavoriteMovie = useMutation({ mutationFn: removeFavoriteMovie });
+	const mutationRemoveFavoriteMovie = useMutation({
+		mutationFn: removeFavoriteMovie,
+		onSuccess: (_, movieId) => onSuccessMutateRemoveFavoriteMovie(movieId)
+	});
 
 	const onAddFavoriteMovie = (movie: AddFavoriteMovieParams) => mutationAddFavoriteMovie.mutate(movie);
 
