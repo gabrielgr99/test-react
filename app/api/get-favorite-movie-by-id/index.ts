@@ -7,12 +7,10 @@ const getFavoriteMovieById = async (movieId: number) => {
 	if (store) {
 		return new Promise<GetFavoriteMovieByIdResponse>((resolve, reject) => {
 			const request = store.get(movieId);
-			request.onsuccess = () => resolve(request.result);
+			request.onsuccess = () => resolve(request.result || null);
 			request.onerror = () => reject(request.error);
 		});
 	}
-
-	return null;
 };
 
 export { getFavoriteMovieById };
