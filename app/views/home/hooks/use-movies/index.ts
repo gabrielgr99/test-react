@@ -10,18 +10,22 @@ export function useMovies() {
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 
-	const { data: favoriteMoviesId } = useQuery({
+	const {
+		data: favoriteMoviesId = [],
+		isSuccess: isFavoriteMovieIdsSuccess,
+		isFetching: isFavoriteMoviesFetching
+	} = useQuery({
 		queryKey: ["get-favorite-movies"],
 		queryFn: getFavoriteMovies,
 		select: (data) => data?.map(item => item.id),
-		initialData: []
+		staleTime: Infinity
 	})
 
 	const {
 		data,
 		fetchNextPage,
 		hasNextPage,
-		isFetching,
+		isFetching: isPopularMoviesFetching,
 		refetch,
 	} = useInfiniteQuery<
 		GetPopularMoviesResponse,
@@ -36,7 +40,7 @@ export function useMovies() {
 		select: (data) => formatResults(data.pages.flatMap(page => page.results), favoriteMoviesId),
 		initialPageParam: 1,
 		initialData: { pageParams: [], pages: [] },
-		enabled: favoriteMoviesId.length > 0
+		enabled: isFavoriteMovieIdsSuccess
 	});
 
 	const onSuccessMutateAddFavoriteMovie = (movie: AddFavoriteMovieParams) => {
@@ -82,7 +86,7 @@ export function useMovies() {
 	return {
 		data,
 		hasMovies,
-		isFetching,
+		isFetching: isFavoriteMoviesFetching || isPopularMoviesFetching,
 		refetch,
 		onRedirect,
 		onAddFavoriteMovie,

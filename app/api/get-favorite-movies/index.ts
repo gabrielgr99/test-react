@@ -2,6 +2,7 @@ import { safeTransaction } from "../indexed-db-client";
 import type { GetFavoriteMoviesResponse } from "./types";
 
 const getFavoriteMovies = async () => {
+	console.log('getFavoriteMovies');
 	const store = await safeTransaction('readwrite');
 
 	if (store) {

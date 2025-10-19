@@ -8,13 +8,6 @@ type GetFavoriteMoviesParams = {
 	sort_by?: GET_FAVORITE_MOVIES_PARAMS_SORT_BY | null
 }
 
-type MovieItem = {
-	id: number,
-	title: string,
-	poster_path: string,
-	vote_average: number
-}
-
 type GetFavoriteMoviesResponse = {
 	id: number,
 	title: string,

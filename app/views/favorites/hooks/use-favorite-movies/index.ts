@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation, useQueryClient, type InfiniteData } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient, type InfiniteData } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { useInfinityScroll } from "~/hooks/use-infinity-scroll";
 import { formatResults } from "../../mappers/format-results";
@@ -11,37 +11,16 @@ export function useFavoriteMovies() {
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 
-	const {
-		data: movies,
-		fetchNextPage,
-		hasNextPage,
-		isFetching,
-		refetch
-	} = useInfiniteQuery<
-		GetFavoriteMoviesResponse,
-		Error,
-		FormatResultsResponse[],
-		string[],
-		number
-	>({
+	const { data: favoriteMovies = [], isFetching, refetch } = useQuery({
 		queryKey: ["get-favorite-movies"],
-		queryFn: ({ pageParam = 1 }) => getFavoriteMovies({ page: pageParam }),
-		getNextPageParam: (lastPage) => lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
-		select: (data) => formatResults(data.pages.flatMap(page => page.results)),
-		initialPageParam: 1,
-		initialData: { pageParams: [], pages: [] }
+		queryFn: getFavoriteMovies,
+		staleTime: Infinity
 	});
 
 	const onSuccessMutate = (movieId: number) => {
 		queryClient.setQueryData(
 			['get-favorite-movies'],
-			(oldData: InfiniteData<GetFavoriteMoviesResponse>): InfiniteData<GetFavoriteMoviesResponse> => ({
-				...oldData,
-				pages: oldData.pages.map(page => ({
-					...page,
-					results: page.results.filter(item => item.id !== movieId)
-				}))
-			})
+			(oldData: GetFavoriteMoviesResponse[]) => oldData.filter(data => data.id !== movieId)
 		)
 	}
 
@@ -54,18 +33,10 @@ export function useFavoriteMovies() {
 
 	const onRedirect = (movieId: number) => navigate(`/movie/${movieId}`);
 
-	const goToNextPage = () => {
-		if (hasNextPage) {
-			fetchNextPage()
-		}
-	}
-
-	useInfinityScroll({ onTrigger: goToNextPage });
-
-	const hasMovies = movies && movies.length > 0;
+	const hasMovies = favoriteMovies.length > 0;
 
 	return {
-		movies,
+		movies: favoriteMovies,
 		hasMovies,
 		isFetching,
 		refetch,
