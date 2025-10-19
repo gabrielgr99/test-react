@@ -1,6 +1,6 @@
 import { MediaList } from "~/components/features/media-list";
 import { useFavoriteMovies } from "./hooks/use-favorite-movies";
-import { ErrorState } from "~/components/features/error-state";
+import { EmptyState } from "./components/empty-state";
 
 export function FavoritesView() {
 	const {
@@ -8,12 +8,12 @@ export function FavoritesView() {
 		isFetching,
 		movies,
 		onRemoveFavoriteMovie,
-		onRedirect,
-		refetch
+		onRedirectToDetails,
+		onRedirectToHome
 	} = useFavoriteMovies();
 	
 	if (!isFetching && !hasMovies) {
-		return <ErrorState onClick={refetch} />
+		return <EmptyState onClick={onRedirectToHome} />
 	}
 
 	return (
@@ -25,7 +25,7 @@ export function FavoritesView() {
 			<MediaList
 				loading={isFetching}
 				medias={movies}
-				onRedirect={onRedirect}
+				onRedirect={onRedirectToDetails}
 				onRemoveFavorite={onRemoveFavoriteMovie}
 				iconName="trash"
 			/>

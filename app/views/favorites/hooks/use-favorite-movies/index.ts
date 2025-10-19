@@ -11,7 +11,7 @@ export function useFavoriteMovies() {
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 
-	const { data: favoriteMovies = [], isFetching, refetch } = useQuery({
+	const { data: favoriteMovies = [], isFetching } = useQuery({
 		queryKey: ["get-favorite-movies"],
 		queryFn: getFavoriteMovies,
 		staleTime: Infinity
@@ -31,7 +31,9 @@ export function useFavoriteMovies() {
 
 	const onRemoveFavoriteMovie = (movieId: number) => mutation.mutate(movieId);
 
-	const onRedirect = (movieId: number) => navigate(`/movie/${movieId}`);
+	const onRedirectToDetails = (movieId: number) => navigate(`/movie/${movieId}`);
+
+	const onRedirectToHome = () => navigate('/');
 
 	const hasMovies = favoriteMovies.length > 0;
 
@@ -39,8 +41,8 @@ export function useFavoriteMovies() {
 		movies: favoriteMovies,
 		hasMovies,
 		isFetching,
-		refetch,
-		onRedirect,
+		onRedirectToDetails,
+		onRedirectToHome,
 		onRemoveFavoriteMovie
 	}
 }
