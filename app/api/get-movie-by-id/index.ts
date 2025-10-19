@@ -1,4 +1,4 @@
-import { apiClient } from "../api-client";
+import { apiClient } from "../clients/api-client";
 import { type GetMovieByIdResponse } from "./types";
 
 const getMovieById = async (movieId: string): Promise<GetMovieByIdResponse> => (

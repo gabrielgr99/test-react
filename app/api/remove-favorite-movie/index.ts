@@ -1,4 +1,4 @@
-import { safeTransaction } from "../indexed-db-client";
+import { safeTransaction } from "../clients/indexed-db-client";
 
 const removeFavoriteMovie = async (movieId: number) => {
 	const store = await safeTransaction('readwrite');

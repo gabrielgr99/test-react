@@ -3,11 +3,6 @@ enum GET_FAVORITE_MOVIES_PARAMS_SORT_BY {
 	TITLE_DESC = 'title.desc'
 }
 
-type GetFavoriteMoviesParams = {
-	page?: number | null,
-	sort_by?: GET_FAVORITE_MOVIES_PARAMS_SORT_BY | null
-}
-
 type GetFavoriteMoviesResponse = {
 	id: number,
 	title: string,
@@ -16,7 +11,6 @@ type GetFavoriteMoviesResponse = {
 }
 
 export {
-	type GetFavoriteMoviesParams,
 	type GetFavoriteMoviesResponse,
 	GET_FAVORITE_MOVIES_PARAMS_SORT_BY
 };

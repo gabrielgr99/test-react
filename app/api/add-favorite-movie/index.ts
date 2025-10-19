@@ -1,4 +1,4 @@
-import { safeTransaction } from "../indexed-db-client";
+import { safeTransaction } from "../clients/indexed-db-client";
 import type { AddFavoriteMovieParams } from "./types";
 
 const addFavoriteMovie = async (movie: AddFavoriteMovieParams) => {

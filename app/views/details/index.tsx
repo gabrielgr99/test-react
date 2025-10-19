@@ -10,7 +10,8 @@ export function DetailsView() {
 	const {
 		movie,
 		isFetching,
-		onFavoriteMovie,
+		onAddFavoriteMovie,
+		onRemoveFavoriteMovie,
 		refetch,
 		hasMovie
 	} = useMovieDetails();
@@ -70,13 +71,13 @@ export function DetailsView() {
 					</p>
 				</div>
 
-				<Button variant='destructive' onClick={onFavoriteMovie}>
+				<Button variant='destructive' onClick={movie?.favorite ? onRemoveFavoriteMovie : onAddFavoriteMovie}>
 					<HeartIcon
 						size={22}
 						fill="white"
 						color="white"
 					/>
-					Adicionar aos Favoritos
+					{movie?.favorite ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
 				</Button>
 			</section>
 		</article>
