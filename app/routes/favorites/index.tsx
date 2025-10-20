@@ -3,8 +3,6 @@ import { FavoritesView } from "../../views/favorites";
 
 export default function Favorites() {
 	return (
-		<PageBody>
-			<FavoritesView />
-		</PageBody>
+		<FavoritesView />
 	);
 }
