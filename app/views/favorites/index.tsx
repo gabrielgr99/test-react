@@ -1,10 +1,10 @@
 import { MediaList } from "~/components/features/media-list";
 import { useFavoriteMovies } from "./hooks/use-favorite-movies";
 import { EmptyState } from "./components/empty-state";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, SingleSelect } from "~/components/ui/select";
 import { GET_FAVORITE_MOVIES_PARAMS_SORT_BY } from "~/api";
 import { PageBody } from "~/components/features/page-body/page-body";
-import { useState } from "react";
+import { getOrderByOptions } from "./mappers/get-order-by-options";
 
 export function FavoritesView() {
 	const {
@@ -31,31 +31,13 @@ export function FavoritesView() {
 
 				<div className="flex items-center gap-2">
 					<label htmlFor="order-by-select">Ordenar por:</label>
-					<Select
-						defaultValue={GET_FAVORITE_MOVIES_PARAMS_SORT_BY.TITLE_ASC}
+					<SingleSelect
+						id="order-by-select"
+						onValueChange={(value) => onOrderBy(value as GET_FAVORITE_MOVIES_PARAMS_SORT_BY)}
 						value={orderBy}
-						onValueChange={onOrderBy}
-					>
-						<SelectTrigger id="order-by-select" className="w-[180px]">
-							<SelectValue placeholder="Selecione"/>
-						</SelectTrigger>
-						<SelectContent>
-							<SelectGroup>
-								<SelectItem value={GET_FAVORITE_MOVIES_PARAMS_SORT_BY.TITLE_ASC}>
-									Título (A-Z)
-								</SelectItem>
-								<SelectItem value={GET_FAVORITE_MOVIES_PARAMS_SORT_BY.TITLE_DESC}>
-									Título (Z-A)
-								</SelectItem>
-								<SelectItem value={GET_FAVORITE_MOVIES_PARAMS_SORT_BY.VOTE_AVERAGE_ASC}>
-									Média de votos (crescente)
-								</SelectItem>
-								<SelectItem value={GET_FAVORITE_MOVIES_PARAMS_SORT_BY.VOTE_AVERAGE_DESC}>
-									Média de votos (decrescente)
-								</SelectItem>
-							</SelectGroup>
-					</SelectContent>
-					</Select>
+						defaultValue={GET_FAVORITE_MOVIES_PARAMS_SORT_BY.TITLE_ASC}
+						options={getOrderByOptions()}
+					/>
 				</div>
 			</section>
 

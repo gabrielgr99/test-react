@@ -171,6 +171,48 @@ function SelectScrollDownButton({
   )
 }
 
+type SingleSelectProps = {
+	defaultValue?: string,
+	value: string,
+	onValueChange: (value: string) => void,
+	id: string,
+	placeholder?: string,
+	options: {
+		label: string,
+		value: string
+	}[]
+};
+
+function SingleSelect({
+	defaultValue,
+	value,
+	onValueChange,
+	id,
+	placeholder,
+	options
+}: SingleSelectProps) {
+	return (
+		<Select
+			defaultValue={defaultValue}
+			value={value}
+			onValueChange={onValueChange}
+		>
+			<SelectTrigger id={id} className="w-[180px]">
+				<SelectValue placeholder={placeholder ?? 'Selecione'}/>
+			</SelectTrigger>
+			<SelectContent>
+				<SelectGroup>
+				{options.map(option => (
+					<SelectItem key={option.value} value={option.value}>
+						{option.label}
+					</SelectItem>
+				))}
+				</SelectGroup>
+			</SelectContent>
+		</Select>
+	);
+}
+
 export {
   Select,
   SelectContent,
@@ -182,4 +224,5 @@ export {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
+  SingleSelect,
 }
