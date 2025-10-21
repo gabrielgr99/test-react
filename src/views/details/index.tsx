@@ -30,7 +30,7 @@ export function DetailsView() {
 	};
 
 	return (
-		<article className="flex gap-8">
+		<article className="flex gap-8 flex-col md:flex-row max-w-[720px] md:max-w-full">
 			{movie?.backdropPath ? (
 				<div className="bg-accent animate-pulse flex-1 rounded-lg h-[360px]">
 					<img
