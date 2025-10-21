@@ -1,16 +1,20 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router";
+import { redirect, useNavigate, useParams, useSearchParams } from "react-router";
 import { addFavoriteMovie, getFavoriteMovies, getMoviesByTitle, removeFavoriteMovie, type AddFavoriteMovieParams, type GetFavoriteMoviesResponse, type GetMoviesByTitleResponse } from "~/api";
 import { useInfinityScroll } from "~/hooks/use-infinity-scroll";
 import { formatData } from "~/mappers/format-results";
 import type { FormatDataResponse } from "~/mappers/format-results/types";
 
 export function useSearchMovies() {
-	const { query = '' } = useParams();
+	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 
-	if (!query) navigate('/');
+	console.log({params: searchParams.get('query')});
+
+	if (!searchParams.get('query')) redirect('/');
+
+	const query = searchParams.get('query') || '';
 
 	const {
 		data: favoriteMoviesId = [],

@@ -4,8 +4,8 @@ type MovieGenre = {
 }
 
 type GetMovieByIdResponse = {
-	poster_path: string,
-	backdrop_path: string,
+	poster_path: string | null,
+	backdrop_path: string | null,
 	title: string,
 	genres: MovieGenre[],
 	release_date: string,

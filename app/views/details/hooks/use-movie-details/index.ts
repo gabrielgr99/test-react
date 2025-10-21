@@ -46,7 +46,7 @@ export function useMovieDetails() {
 		if (movie && movieId) {
 			addFavoriteMovieMutation.mutate({
 				id: Number(movieId),
-				posterPath: `https://image.tmdb.org/t/p/w300/${movie.posterPath}`,
+				posterPath: movie.posterPath,
 				title: movie.title,
 				voteAverage: movie.voteAverage
 			});
