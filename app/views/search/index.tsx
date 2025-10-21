@@ -29,7 +29,7 @@ export function SearchView() {
 				<h2 className="scroll-m-20 text-3xl font-bold tracking-tight first:mt-0">
 					Resultados para: <span className="text-sun">"{query}"</span>
 				</h2>
-				<p>Encontrados {totalResutls} filmes</p>
+				<p>{isFetching ? 'Buscando...' : `Encontrados ${totalResutls} filmes`}</p>
 			</section>
 
 			<PageBody>

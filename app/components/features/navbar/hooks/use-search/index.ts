@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { redirect, useLocation, useNavigate, useSearchParams } from "react-router";
+import { useCallback, useEffect, useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
+import { useSearchMoviesContext } from "~/contexts/use-search-movies";
 
 export function useSearch() {
-	const [searchValue, setSearchValue] = useState<string>('');
+	const { searchTerm, onChangeSearchTerm } = useSearchMoviesContext();
 
 	const [searchParams, setSearchParams] = useSearchParams();
 	const location = useLocation();
@@ -10,31 +11,33 @@ export function useSearch() {
 
 	const searchParamsQuery = searchParams.get('query');
 
-	const onChangeSearch = (query: string) => {
-		setSearchValue(query);
-	};
+	const onChangeSearch = (query: string) => onChangeSearchTerm(query);
+
+	const onClearSearch = useCallback(() => {
+		onChangeSearchTerm('');
+	}, []);
 
 	 useEffect(() => {
 		const timeout = setTimeout(() => {
-			if (!searchValue && location.pathname !== '/') {
-				navigate('/');
-				return searchParams.delete('query')
+			if (!searchTerm && location.pathname === '/search') {
+				onChangeSearchTerm('');
+				return navigate('/');
 			}
 
-			if (location.pathname !== '/search' && searchValue) {
-				return navigate(`search?query=${searchValue}`);
+			if (location.pathname !== '/search' && searchTerm) {
+				return navigate(`search?query=${searchTerm}`);
 			}
 			
-			if (searchParamsQuery !== searchValue && searchValue) {
-				setSearchParams({ query: searchValue });
+			if (searchParamsQuery !== searchTerm && searchTerm) {
+				setSearchParams({ query: searchTerm });
 			}
 		}, 500);
 
 		return () => clearTimeout(timeout);
-	}, [onChangeSearch, searchValue, searchParamsQuery]);
+	}, [onChangeSearch, searchTerm, searchParamsQuery, onClearSearch]);
 
 	return {
-		searchValue,
-		onChangeSearch
+		searchTerm: searchTerm || '',
+		onChangeSearchTerm
 	};
 }

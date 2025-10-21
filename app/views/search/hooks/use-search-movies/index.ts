@@ -1,6 +1,15 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { redirect, useNavigate, useParams, useSearchParams } from "react-router";
-import { addFavoriteMovie, getFavoriteMovies, getMoviesByTitle, removeFavoriteMovie, type AddFavoriteMovieParams, type GetFavoriteMoviesResponse, type GetMoviesByTitleResponse } from "~/api";
+import { redirect, useNavigate, useSearchParams } from "react-router";
+import {
+	addFavoriteMovie,
+	getFavoriteMovies,
+	getMoviesByTitle,
+	removeFavoriteMovie,
+	type AddFavoriteMovieParams,
+	type GetFavoriteMoviesResponse,
+	type GetMoviesByTitleResponse
+} from "~/api";
+import { useSearchMoviesContext } from "~/contexts/use-search-movies";
 import { useInfinityScroll } from "~/hooks/use-infinity-scroll";
 import { formatData } from "~/mappers/format-results";
 import type { FormatDataResponse } from "~/mappers/format-results/types";
@@ -9,6 +18,7 @@ export function useSearchMovies() {
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
+	const { onChangeSearchTerm } = useSearchMoviesContext();
 
 	if (!searchParams.get('query')) redirect('/');
 
@@ -74,7 +84,10 @@ export function useSearchMovies() {
 
 	const onRemoveFavoriteMovie = (movieId: number) => mutationRemoveFavoriteMovie.mutate(movieId);
 
-	const onRedirectToDetails = (movieId: number) => navigate(`/movie/${movieId}`);
+	const onRedirectToDetails = (movieId: number) => {
+		onChangeSearchTerm('');
+		navigate(`/movie/${movieId}`);
+	};
 
 	const goToNextPage = () => {
 		if (hasNextPage) {

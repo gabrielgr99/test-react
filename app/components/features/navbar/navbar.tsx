@@ -1,11 +1,11 @@
 import { ClapperboardIcon } from "lucide-react"
 import { buttonVariants } from "../../ui/button"
 import { Input } from "../../ui/input"
-import { NavLink, useLocation, useNavigate, useSearchParams } from "react-router"
+import { NavLink } from "react-router"
 import { useSearch } from "./hooks/use-search";
 
 function Navbar() {
-	const { onChangeSearch, searchValue } = useSearch();
+	const { onChangeSearchTerm, searchTerm } = useSearch();
 
 	return (
 		<header className="w-full border-b border-card flex justify-between items-center py-4 px-3 flex-col md:flex-row gap-4 md:h-">
@@ -17,14 +17,15 @@ function Navbar() {
 			<Input
 				placeholder="Buscar filmes..."
 				className="max-w-[336px] h-8"
-				value={searchValue}
-				onChange={(event) => onChangeSearch(event.target.value)}
+				value={searchTerm}
+				onChange={(event) => onChangeSearchTerm(event.target.value)}
 			/>
 
 			<nav className="flex gap-4">
 				<NavLink
 					to="/"
 					className={({ isActive }) => buttonVariants({ variant: isActive ? 'default' : 'ghost' })}
+					onClick={() => onChangeSearchTerm('')}
 					end
 				>
 					Home
@@ -32,6 +33,7 @@ function Navbar() {
 				<NavLink
 					to="/favorites"
 					className={({ isActive }) => buttonVariants({ variant: isActive ? 'default' : 'ghost' })}
+					onClick={() => onChangeSearchTerm('')}
 					end
 				>
 					Favoritos

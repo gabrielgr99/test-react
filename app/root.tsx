@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import { PageLayout } from "./components/features/page-layout/page-layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SearchMoviesProvider } from "./contexts/use-search-movies";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -53,9 +54,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<QueryClientProvider client={queryClient}>
-					<PageLayout>
-						{children}
-					</PageLayout>
+					<SearchMoviesProvider>
+						<PageLayout>
+							{children}
+						</PageLayout>
+					</SearchMoviesProvider>
 				</QueryClientProvider>
 				<ScrollRestoration />
 				<Scripts />
