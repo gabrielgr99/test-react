@@ -5,6 +5,7 @@ import { HomeView } from '.';
 import { apiClient, getFavoriteMovies, GetPopularMoviesResponse } from 'src/api';
 import { useNavigate } from 'react-router';
 import { Providers } from 'src/test/providers';
+import { GET_MOVIES_LANGUAGES } from 'src/constants/languages';
 
 const popularMoviesMock: GetPopularMoviesResponse = {
 	page: 1,
@@ -79,5 +80,25 @@ describe('HomeView', () => {
 		await userEvent.click(within(mediaItem).getByRole('img', { name: 'Movie poster' }));
 
 		expect(navigateMock).toHaveBeenCalledWith(`/movie/${popularMoviesMock.results[0].id}`);
+	});
+
+	test('should show empty state', async () => {
+		mock.onGet('/movie/popular').reply(200, { ...popularMoviesMock, total_results: 0, results: [] });
+
+		const spyGet = jest.spyOn(apiClient, 'get');
+
+		render(<HomeViewComponent />);
+
+		expect(await screen.findByRole('heading', { name: 'Sem filmes por aqui' })).toBeInTheDocument();
+		expect(screen.getByRole('paragraph', { name: 'Ops, acho que tivemos um erro, por favor, tente novamente...' })).toBeInTheDocument();
+
+
+		await userEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
+		expect(spyGet).toHaveBeenCalledWith('/movie/popular', {
+			params: {
+				language: GET_MOVIES_LANGUAGES.PT_BR,
+				page: 1
+			}
+		});
 	});
 });
