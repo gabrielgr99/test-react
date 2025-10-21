@@ -21,7 +21,7 @@ export function MediaList({
 		<ul className="flex gap-4 flex-wrap">
 			{medias.map(({ favorite, ...media }, index) => (
 				<CardMovie
-					key={media.id + index}
+					key={`${media.id}${index}`}
 					title={media.title}
 					posterPath={media.posterPath}
 					voteAverage={media.voteAverage.toFixed(1)}
