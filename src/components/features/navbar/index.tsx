@@ -15,7 +15,7 @@ function Navbar() {
 			</h3>
 
 			<Input
-				name="Search movies"
+				title="Search movies"
 				placeholder="Buscar filmes..."
 				className="max-w-[336px] h-8"
 				value={searchTerm}
