@@ -1,4 +1,4 @@
-import { PageBody } from "~/components/features/page-body/page-body";
+import { PageBody } from "~/components/features/page-body";
 import { HomeView } from "../../views/home";
 
 export default function Home() {

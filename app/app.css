@@ -44,6 +44,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sun: var(--sun);
+  --color-background-sun: var(--background-sun)
 }
 
 :root {
@@ -81,6 +82,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   --sun: oklch(0.7431 0.1603 67.68);
+  --background-sun: oklch(82.8% 0.189 84.429);
 }
 
 @layer base {

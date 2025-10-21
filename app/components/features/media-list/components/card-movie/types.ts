@@ -6,7 +6,8 @@ type CardMovieProps = {
 	onRemoveFavorite: () => void,
 	isFavorite: boolean,
 	onClick: () => void,
-	iconName: 'trash' | 'heart'
+	iconName: 'trash' | 'heart',
+	term?: string
 }
 
 export type { CardMovieProps }

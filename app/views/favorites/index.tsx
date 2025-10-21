@@ -2,7 +2,7 @@ import { MediaList } from "~/components/features/media-list";
 import { useFavoriteMovies } from "./hooks/use-favorite-movies";
 import { SingleSelect } from "~/components/ui/select";
 import { GET_FAVORITE_MOVIES_PARAMS_SORT_BY } from "~/api";
-import { PageBody } from "~/components/features/page-body/page-body";
+import { PageBody } from "~/components/features/page-body";
 import { getOrderByOptions } from "./mappers/get-order-by-options";
 import { EmptyState } from "~/components/features/empty-state";
 

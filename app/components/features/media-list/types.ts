@@ -12,7 +12,8 @@ type MediaListProps = {
 	onRedirect: (mediaId: number) => void,
 	onAddFavorite?: (media: MediaItem) => void,
 	onRemoveFavorite: (mediaId: number) => void,
-	iconName?: 'trash' | 'heart'
+	iconName?: 'trash' | 'heart',
+	term?: string
 };
 
 export type { MediaItem, MediaListProps };

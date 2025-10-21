@@ -9,7 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { PageLayout } from "./components/features/page-layout/page-layout";
+import { PageLayout } from "./components/features/page-layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SearchMoviesProvider } from "./contexts/use-search-movies";
 

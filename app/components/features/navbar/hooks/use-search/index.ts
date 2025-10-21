@@ -13,17 +13,17 @@ export function useSearch() {
 
 	 useEffect(() => {
 		const timeout = setTimeout(() => {
-			if (!searchTerm && location.pathname === '/search') {
+			if (!searchTerm.trim() && location.pathname === '/search') {
 				onChangeSearchTerm('');
 				return navigate('/');
 			}
 
-			if (location.pathname !== '/search' && searchTerm) {
-				return navigate(`search?query=${searchTerm}`);
+			if (location.pathname !== '/search' && searchTerm.trim()) {
+				return navigate(`search?query=${searchTerm.trim()}`);
 			}
 			
-			if (searchParamsQuery !== searchTerm && searchTerm) {
-				setSearchParams({ query: searchTerm });
+			if (searchParamsQuery !== searchTerm.trim() && searchTerm.trim()) {
+				setSearchParams({ query: searchTerm.trim() });
 			}
 		}, 500);
 

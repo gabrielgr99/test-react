@@ -8,7 +8,8 @@ export function MediaList({
 	onRedirect,
 	onAddFavorite,
 	onRemoveFavorite,
-	iconName = 'heart'
+	iconName = 'heart',
+	term
 }: MediaListProps) {
 	const handleAddFavorite = (mediaId: MediaItem) => {
 		if (onAddFavorite) {
@@ -29,6 +30,7 @@ export function MediaList({
 					onRemoveFavorite={() => onRemoveFavorite(media.id)}
 					onClick={() => onRedirect(media.id)}
 					iconName={iconName}
+					term={term}
 				/>
 			))}
 			{loading && Array(20).fill('').map((_, index) => (

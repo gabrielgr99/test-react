@@ -1,4 +1,4 @@
-import { PageBody } from "~/components/features/page-body/page-body";
+import { PageBody } from "~/components/features/page-body";
 import { useSearchMovies } from "./hooks/use-search-movies";
 import { MediaList } from "~/components/features/media-list";
 import { EmptyState } from "~/components/features/empty-state";
@@ -39,6 +39,7 @@ export function SearchView() {
 					onRedirect={onRedirectToDetails}
 					onAddFavorite={onAddFavoriteMovie}
 					onRemoveFavorite={onRemoveFavoriteMovie}
+					term={query}
 				/>
 			</PageBody>
 		</article>
