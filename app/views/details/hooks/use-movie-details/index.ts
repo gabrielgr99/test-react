@@ -46,9 +46,9 @@ export function useMovieDetails() {
 		if (movie && movieId) {
 			addFavoriteMovieMutation.mutate({
 				id: Number(movieId),
-				poster_path: `https://image.tmdb.org/t/p/w300/${movie.poster_path}`,
+				posterPath: `https://image.tmdb.org/t/p/w300/${movie.posterPath}`,
 				title: movie.title,
-				vote_average: movie.vote_average
+				voteAverage: movie.voteAverage
 			});
 		}
 	};

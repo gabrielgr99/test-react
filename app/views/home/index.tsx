@@ -1,6 +1,6 @@
 import { MediaList } from "~/components/features/media-list";
-import { ErrorState } from "../../components/features/error-state";
 import { useMovies } from "./hooks/use-movies";
+import { EmptyState } from "~/components/features/empty-state";
 
 export function HomeView() {
 	const {
@@ -14,7 +14,12 @@ export function HomeView() {
 	} = useMovies();
 
 	if (!isFetching && !hasMovies) {
-		return <ErrorState onClick={refetch} />
+		return <EmptyState
+			title="Sem filmes por aqui"
+			description="Ops, acho que tivemos um erro, por favor, tente novamente..."
+			actionLabel="Tentar novamente"
+			onClick={refetch}
+		/>
 	}
 
 	return (

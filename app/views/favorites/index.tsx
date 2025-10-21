@@ -1,10 +1,10 @@
 import { MediaList } from "~/components/features/media-list";
 import { useFavoriteMovies } from "./hooks/use-favorite-movies";
-import { EmptyState } from "./components/empty-state";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, SingleSelect } from "~/components/ui/select";
+import { SingleSelect } from "~/components/ui/select";
 import { GET_FAVORITE_MOVIES_PARAMS_SORT_BY } from "~/api";
 import { PageBody } from "~/components/features/page-body/page-body";
 import { getOrderByOptions } from "./mappers/get-order-by-options";
+import { EmptyState } from "~/components/features/empty-state";
 
 export function FavoritesView() {
 	const {
@@ -17,9 +17,14 @@ export function FavoritesView() {
 		onOrderBy,
 		orderBy
 	} = useFavoriteMovies();
-	
+
 	if (!isFetching && !hasMovies) {
-		return <EmptyState onClick={onRedirectToHome} />
+		return <EmptyState
+			title="Nenhum filme favorito ainda"
+			description="Comece explorando filmes populares e adicione seus favoritos!"
+			actionLabel="Explorar Filmes"
+			onClick={onRedirectToHome}
+		/>
 	}
 
 	return (

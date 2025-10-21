@@ -15,8 +15,8 @@ const labelsSortBy = {
 type GetFavoriteMoviesResponse = {
 	id: number,
 	title: string,
-	poster_path: string,
-	vote_average: number
+	posterPath: string,
+	voteAverage: number
 }
 
 export {

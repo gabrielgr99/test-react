@@ -1,9 +1,9 @@
 import { VoteAverage } from "~/components/ui/vote-average";
 import { Button } from "~/components/ui/button";
 import { HeartIcon } from "lucide-react";
-import { ErrorState } from "~/components/features/error-state";
 import { MovieDetailsLoading } from "./components/movie-details-loading";
 import { useMovieDetails } from "./hooks/use-movie-details";
+import { EmptyState } from "~/components/features/empty-state";
 
 
 export function DetailsView() {
@@ -21,7 +21,12 @@ export function DetailsView() {
 	};
 
 	if (hasMovie) {
-		return <ErrorState onClick={refetch} />
+		return <EmptyState
+			title="Sem filmes por aqui"
+			description="Ops, acho que tivemos um erro, por favor, tente novamente..."
+			actionLabel="Tentar novamente"
+			onClick={refetch}
+		/>
 	};
 
 	return (
@@ -29,7 +34,7 @@ export function DetailsView() {
 			<div className="bg-accent animate-pulse flex-1 rounded-lg h-[360px]">
 				<img
 					alt="Movie poster"
-					src={movie?.backdrop_path}
+					src={movie?.backdropPath}
 					className="w-full h-full rounded-lg object-cover opacity-0"
 					onLoad={(event) => {
 						event.currentTarget.style.opacity = '1';
@@ -55,11 +60,11 @@ export function DetailsView() {
 
 				<div className="flex gap-1 mb-1 items-center text-muted-light">
 					<small className="text-sm leading-none font-semibold ">Data de lançamento:</small>
-					<small className="text-sm leading-none">{movie?.release_date}</small>
+					<small className="text-sm leading-none">{movie?.releaseDate}</small>
 				</div>
 				<div className="mb-6 flex gap-1 items-center text-muted-light">
 					<small className="text-sm leading-none font-medium">Nota TMDB:</small>
-					<VoteAverage voteAverage={movie?.vote_average.toFixed(1) ?? ''} />
+					<VoteAverage voteAverage={movie?.voteAverage.toFixed(1) ?? ''} />
 				</div>
 
 				<div className="mb-6">

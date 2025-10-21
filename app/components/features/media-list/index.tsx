@@ -22,8 +22,8 @@ export function MediaList({
 				<CardMovie
 					key={media.id + index}
 					title={media.title}
-					posterPath={media.poster_path}
-					voteAverage={media.vote_average.toFixed(1)}
+					posterPath={media.posterPath}
+					voteAverage={media.voteAverage.toFixed(1)}
 					isFavorite={!!favorite}
 					onAddFavorite={() => handleAddFavorite(media)}
 					onRemoveFavorite={() => onRemoveFavorite(media.id)}

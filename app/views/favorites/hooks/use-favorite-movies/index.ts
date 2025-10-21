@@ -13,7 +13,7 @@ export function useFavoriteMovies() {
 	const queryClient = useQueryClient();
 
 	const { data: favoriteMovies = [], isFetching } = useQuery({
-		queryKey: ["get-favorite-movies", orderBy],
+		queryKey: ["get-favorite-movies"],
 		queryFn: getFavoriteMovies,
 		select: (data) => orderData(data, orderBy),
 		staleTime: Infinity
@@ -22,7 +22,11 @@ export function useFavoriteMovies() {
 	const onSuccessMutate = (movieId: number) => {
 		queryClient.setQueryData(
 			['get-favorite-movies'],
-			(oldData: GetFavoriteMoviesResponse[]) => oldData.filter(data => data.id !== movieId)
+			(oldData: GetFavoriteMoviesResponse[]) => {
+				const x = oldData.filter(data => data.id !== movieId)
+				console.log({x});
+				return x;
+			}
 		)
 	}
 

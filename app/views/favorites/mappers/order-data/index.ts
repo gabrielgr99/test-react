@@ -14,11 +14,11 @@ export function orderData(data: GetFavoriteMoviesResponse[], orderBy: GET_FAVORI
 	}
 
 	if (orderBy === GET_FAVORITE_MOVIES_PARAMS_SORT_BY.VOTE_AVERAGE_ASC) {
-		return data.sort((a, b) => a.vote_average > b.vote_average ? 1 : -1);
+		return data.sort((a, b) => a.voteAverage > b.voteAverage ? 1 : -1);
 	}
 
 	if (orderBy === GET_FAVORITE_MOVIES_PARAMS_SORT_BY.VOTE_AVERAGE_DESC) {
-		return data.sort((a, b) => a.vote_average < b.vote_average ? 1 : -1);
+		return data.sort((a, b) => a.voteAverage < b.voteAverage ? 1 : -1);
 	}
 
 	return data;

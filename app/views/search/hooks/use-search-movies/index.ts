@@ -1,14 +1,16 @@
-import { useInfiniteQuery, useMutation, useQuery, useQueryClient, type InfiniteData } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
-import { addFavoriteMovie } from "~/api/add-favorite-movie";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router";
+import { addFavoriteMovie, getFavoriteMovies, getMoviesByTitle, removeFavoriteMovie, type AddFavoriteMovieParams, type GetFavoriteMoviesResponse, type GetMoviesByTitleResponse } from "~/api";
 import { useInfinityScroll } from "~/hooks/use-infinity-scroll";
-import { formatData } from "../../../../mappers/format-results";
-import { GET_FAVORITE_MOVIES_PARAMS_SORT_BY, getFavoriteMovies, getPopularMovies, removeFavoriteMovie, type AddFavoriteMovieParams, type GetFavoriteMoviesResponse, type GetPopularMoviesResponse } from "~/api";
+import { formatData } from "~/mappers/format-results";
 import type { FormatDataResponse } from "~/mappers/format-results/types";
 
-export function useMovies() {
+export function useSearchMovies() {
+	const { query = '' } = useParams();
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
+
+	if (!query) navigate('/');
 
 	const {
 		data: favoriteMoviesId = [],
@@ -22,20 +24,19 @@ export function useMovies() {
 	})
 
 	const {
-		data,
+		data: researchedMovies,
 		fetchNextPage,
 		hasNextPage,
-		isFetching: isPopularMoviesFetching,
-		refetch,
+		isFetching: isPopularMoviesFetching
 	} = useInfiniteQuery<
-		GetPopularMoviesResponse,
+		GetMoviesByTitleResponse,
 		Error,
 		FormatDataResponse,
 		string[],
 		number
 	>({
-		queryKey: ["get-popular-movies"],
-		queryFn: ({ pageParam = 1 }) => getPopularMovies({ page: pageParam }),
+		queryKey: ["get-movies-by-title", query],
+		queryFn: ({ pageParam = 1 }) => getMoviesByTitle({ page: pageParam, query }),
 		getNextPageParam: (lastPage) => lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
 		select: (data) => formatData(data.pages, favoriteMoviesId),
 		initialPageParam: 1,
@@ -66,28 +67,29 @@ export function useMovies() {
 		mutationFn: removeFavoriteMovie,
 		onSuccess: (_, movieId) => onSuccessMutateRemoveFavoriteMovie(movieId)
 	});
-
+	
 	const onAddFavoriteMovie = (movie: AddFavoriteMovieParams) => mutationAddFavoriteMovie.mutate(movie);
 
 	const onRemoveFavoriteMovie = (movieId: number) => mutationRemoveFavoriteMovie.mutate(movieId);
 
-	const onRedirect = (movieId: number) => navigate(`/movie/${movieId}`);
+	const onRedirectToDetails = (movieId: number) => navigate(`/movie/${movieId}`);
 
 	const goToNextPage = () => {
 		if (hasNextPage) {
 			fetchNextPage()
 		}
 	}
-
+	
 	useInfinityScroll({ onTrigger: goToNextPage });
 
 	return {
-		data: data.results,
-		hasMovies: data.totalResults,
+		query,
+		researchedMovies: researchedMovies.results,
+		totalResutls: researchedMovies.totalResults,
+		hasMovies: researchedMovies.totalResults > 0,
 		isFetching: isFavoriteMoviesFetching || isPopularMoviesFetching,
-		refetch,
-		onRedirect,
-		onAddFavoriteMovie,
-		onRemoveFavoriteMovie
-	}
+		onRedirectToDetails,
+		onRemoveFavoriteMovie,
+		onAddFavoriteMovie
+	};
 }
