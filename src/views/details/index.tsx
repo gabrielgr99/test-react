@@ -57,11 +57,11 @@ export function DetailsView() {
 					{movie?.title}
 				</h2>
 
-				<ul className="flex gap-2 mb-4">
-					{movie?.genres.map(genre => (
+				<ul className="flex gap-2 mb-4 flex-wrap">
+					{movie?.genres.map((genre, index) => (
 						<li
 							title={genre.name}
-							key={genre.id}
+							key={`${genre.id}${index}`}
 							className="bg-primary text-foreground px-2 py-1 rounded-full text-xs"
 						>
 							{genre.name}
@@ -89,7 +89,11 @@ export function DetailsView() {
 					</div>
 				)}
 
-				<Button variant='destructive' onClick={movie?.favorite ? onRemoveFavoriteMovie : onAddFavoriteMovie}>
+				<Button
+					variant='destructive'
+					onClick={movie?.favorite ? onRemoveFavoriteMovie : onAddFavoriteMovie}
+					className="w-full md:w-auto"
+				>
 					<HeartIcon
 						size={22}
 						fill="white"
