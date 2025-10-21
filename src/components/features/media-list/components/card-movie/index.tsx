@@ -61,7 +61,7 @@ export function CardMovie({
 							onClick={onClick}
 						/>
 					) : (
-						<div className="h-[300px] flex items-center justify-center">
+						<div className="h-[300px] flex items-center justify-center" onClick={onClick}>
 							<FileImageIcon size={72} className="text-background" />
 						</div>
 					)}

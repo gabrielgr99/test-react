@@ -78,14 +78,16 @@ export function DetailsView() {
 					<VoteAverage voteAverage={movie?.voteAverage.toFixed(1) ?? ''} />
 				</div>
 
-				<div className="mb-6">
-					<h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-						Sinopse
-					</h4>
-					<p className="leading-7" aria-label={movie?.overview}>
-						{movie?.overview}
-					</p>
-				</div>
+				{movie?.overview && (
+					<div className="mb-6">
+						<h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+							Sinopse
+						</h4>
+						<p className="leading-7" aria-label={movie?.overview}>
+							{movie?.overview}
+						</p>
+					</div>
+				)}
 
 				<Button variant='destructive' onClick={movie?.favorite ? onRemoveFavoriteMovie : onAddFavoriteMovie}>
 					<HeartIcon
