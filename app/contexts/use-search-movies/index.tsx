@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState, type Dispatch, type PropsWithChildren } from "react";
+import { createContext, useCallback, useContext, useMemo, useState, type Dispatch, type PropsWithChildren } from "react";
 import type { SearchMoviesContextValue } from "./types";
 
 const INITAL_VALUE: SearchMoviesContextValue = {
@@ -11,9 +11,9 @@ const SearchMoviesContext = createContext<SearchMoviesContextValue>(INITAL_VALUE
 function SearchMoviesProvider({ children }: PropsWithChildren) {
 	const [searchTerm, setSearchTerm] = useState<string>('');
 
-	const onChangeSearchTerm = (term: string) => {
+	const onChangeSearchTerm = useCallback((term: string) => {
 		setSearchTerm(term);
-	};
+	}, [setSearchTerm]);
 
 	const contextValue = useMemo(() => ({
 		onChangeSearchTerm,
