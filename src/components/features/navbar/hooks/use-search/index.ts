@@ -1,0 +1,41 @@
+import { useEffect } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
+import { useSearchMoviesContext } from "src/contexts/use-search-movies";
+
+export function useSearch() {
+	const { searchTerm, onChangeSearchTerm } = useSearchMoviesContext();
+
+	const [searchParams, setSearchParams] = useSearchParams();
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	const searchParamsQuery = searchParams.get('query');
+
+	 useEffect(() => {
+		const timeout = setTimeout(() => {
+			if (!searchTerm.trim() && location.pathname === '/search') {
+				onChangeSearchTerm('');
+				return navigate('/');
+			}
+
+			if (location.pathname !== '/search' && searchTerm.trim()) {
+				return navigate(`search?query=${searchTerm.trim()}`);
+			}
+			
+			if (searchParamsQuery !== searchTerm.trim() && searchTerm.trim()) {
+				setSearchParams({ query: searchTerm.trim() });
+			}
+		}, 500);
+
+		return () => clearTimeout(timeout);
+	}, [searchTerm, searchParamsQuery]);
+
+	useEffect(() => {
+		if (searchParamsQuery) onChangeSearchTerm(searchParamsQuery);
+	}, [searchParamsQuery]);
+
+	return {
+		searchTerm: searchTerm || '',
+		onChangeSearchTerm
+	};
+}
