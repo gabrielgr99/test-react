@@ -1,87 +1,98 @@
-# Welcome to React Router!
+# Teste React!
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Projeto **React + TypeScript** configurado com **Parcel, TailwindCSS, React Router v7 e React Query**, e suporte completo a testes com **Jest e Testing Library**.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+[Veja funcionando](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
 
-## Features
+## Requisitos
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Node.js: >=20.0.0
+- npm: >=10.0.0
 
-## Getting Started
+## Principais Tecnologias
 
-### Installation
+| Categoria           | Pacote                        | Versão   |
+| ------------------- | ----------------------------- | -------- |
+| **Frontend**        | react                       | ^19.1.1  |
+|                     | react-dom                   | ^19.1.1  |
+|                     | react-router                | ^7.9.2   |
+|                     | @tanstack/react-query       | ^5.90.5  |
+|                     | tailwindcss                 | ^4.1.15  |
+|                     | @radix-ui/react-select      | ^2.2.6   |
+|                     | lucide-react                | ^0.545.0 |
+| **Utilitários**     | axios                       | ^1.12.2  |
+|                     | clsx                        | ^2.1.1   |
+|                     | class-variance-authority    | ^0.7.1   |
+|                     | tailwind-merge              | ^3.3.1   |
+|                     | isbot                       | ^5.1.31  |
+| **Build e Tooling** | parcel                      | ^2.16.0  |
+|                     | typescript                  | ^5.9.2   |
+|                     | @babel/core                 | ^7.28.4  |
+|                     | postcss                     | ^8.5.6   |
+|                     | autoprefixer                | ^10.4.21 |
+| **Testes**          | jest                        | ^30.2.0  |
+|                     | babel-jest                  | ^30.2.0  |
+|                     | jest-environment-jsdom      | ^30.2.0  |
+|                     | @testing-library/react      | ^16.3.0  |
+|                     | @testing-library/jest-dom   | ^6.9.1   |
+|                     | @testing-library/user-event | ^14.6.1  |
+|                     | axios-mock-adapter          | ^2.1.0   |
 
-Install the dependencies:
+
+## Vamos começar
+
+### Instalação
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+### Desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Sua aplicação estará disponível em `http://localhost:1234`.
 
-## Building for Production
-
-Create a production build:
+## Buildando para produção
 
 ```bash
 npm run build
 ```
 
-## Deployment
+Os arquivos compilados ficarão disponíveis em `dist/`
 
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+### Estrutura de pastas
 
 ```
+├── public
+├── src/
+│   ├── api/
+│   ├── components/
+│   │   ├── ui/
+│   │   └── features/
+│   ├── constants/
+│   ├── contexts/
+│   ├── hooks/
+│   ├── lib/
+│   ├── mappers/
+│   ├── routes/
+│   ├── test/
+│   ├── views/
+│   ├── app.css
+│   ├── index.html
+│   ├── main.tsx
+│   └── routes.tsx
+├── .env
+├── .gitignore
+├── postcssrc.json
+├── babel.config.js
+├── components.json
+├── jest.config.ts
+├── package-lock.json
 ├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+├── README.md
+├── tailwind.config.ts
+└── tsconfig.json
 ```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
