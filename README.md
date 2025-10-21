@@ -2,7 +2,7 @@
 
 Projeto **React + TypeScript** configurado com **Parcel, TailwindCSS, React Router v7 e React Query**, e suporte completo a testes com **Jest e Testing Library**.
 
-[Veja funcionando](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+[Veja funcionando](https://test-react-peach-two.vercel.app/)
 
 ## Requisitos
 
