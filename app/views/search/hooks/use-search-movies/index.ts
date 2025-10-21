@@ -10,8 +10,6 @@ export function useSearchMovies() {
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 
-	console.log({params: searchParams.get('query')});
-
 	if (!searchParams.get('query')) redirect('/');
 
 	const query = searchParams.get('query') || '';

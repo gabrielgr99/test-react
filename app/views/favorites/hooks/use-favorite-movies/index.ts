@@ -22,11 +22,7 @@ export function useFavoriteMovies() {
 	const onSuccessMutate = (movieId: number) => {
 		queryClient.setQueryData(
 			['get-favorite-movies'],
-			(oldData: GetFavoriteMoviesResponse[]) => {
-				const x = oldData.filter(data => data.id !== movieId)
-				console.log({x});
-				return x;
-			}
+			(oldData: GetFavoriteMoviesResponse[]) => oldData.filter(data => data.id !== movieId)
 		)
 	}
 
