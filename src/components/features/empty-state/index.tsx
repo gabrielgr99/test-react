@@ -10,7 +10,7 @@ export function EmptyState({ onClick, actionLabel, description, title }: EmptySt
 				<h4 className="scroll-m-20 text-muted-foreground text-xl font-medium tracking-tight">
 					{title}
 				</h4>
-				<p className="text-muted-foreground text-sm">
+				<p className="text-muted-foreground text-sm" title={description}>
 					{description}
 				</p>
 			</div>
