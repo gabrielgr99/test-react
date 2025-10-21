@@ -4,6 +4,7 @@ import Movie from "./routes/movie";
 import Search from "./routes/search";
 import { App } from "./main";
 import { createBrowserRouter } from "react-router";
+import NotFound from "./routes/not-found";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { path: "favorites", element: <Favorites /> },
       { path: "movie/:movieId", element: <Movie /> },
       { path: "search", element: <Search /> },
+	  { path: "*", element: <NotFound /> },
     ],
   },
 ]);
