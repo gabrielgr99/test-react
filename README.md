@@ -6,8 +6,8 @@ Projeto **React + TypeScript** configurado com **Parcel, TailwindCSS, React Rout
 
 ## Requisitos
 
-- Node.js: >=20.0.0
-- npm: >=10.0.0
+- Node.js: ^20.19.0 || >=22.12.0
+- npm: 10.5.0
 
 ## Principais Tecnologias
 
