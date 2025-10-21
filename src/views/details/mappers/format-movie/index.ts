@@ -7,8 +7,8 @@ export const formatMovie = (movie: GetMovieByIdResponse, favorite: boolean) => (
 	genres: movie.genres,
 	overview: movie.overview,
 	releaseDate: formatDate(movie.release_date),
-	backdropPath: `${BACKDROP_PREFIX_URL}${movie.backdrop_path}`,
-	posterPath: `${POSTER_PREFIX_URL}${movie.poster_path}`,
+	backdropPath: movie.backdrop_path ? `${BACKDROP_PREFIX_URL}${movie.backdrop_path}` : null,
+	posterPath: movie.poster_path ? `${POSTER_PREFIX_URL}${movie.poster_path}` : null,
 	voteAverage: movie.vote_average,
 	favorite
 });

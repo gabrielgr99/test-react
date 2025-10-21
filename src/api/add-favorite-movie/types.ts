@@ -1,5 +1,5 @@
 export type AddFavoriteMovieParams = {
-	posterPath: string,
+	posterPath: string | null,
 	title: string,
 	voteAverage: number,
 	id: number

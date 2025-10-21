@@ -1,6 +1,6 @@
 type ResultItem = {
 	id: number,
-	posterPath: string,
+	posterPath: string | null,
 	favorite: boolean,
 	title: string,
 	voteAverage: number

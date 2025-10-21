@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "src/components/ui/card";
 import type { CardMovieProps } from "./types";
 import { VoteAverage } from "src/components/ui/vote-average";
-import { HeartIcon, Trash2Icon } from "lucide-react";
+import { FileImageIcon, HeartIcon, Trash2Icon } from "lucide-react";
 
 export function CardMovie({
 	title,
@@ -35,7 +35,7 @@ export function CardMovie({
 	return (
 		<li title={title}>
 			<Card className="p-0 border-0 w-[200px] h-max gap-0 hover:scale-105 duration-300 cursor-pointer">
-				<CardContent className="p-0 relative">
+				<CardContent className="p-0 relative bg-muted-foreground rounded-t-md">
 					{iconName === 'heart' && (
 						<HeartIcon
 							size={22}
@@ -53,12 +53,18 @@ export function CardMovie({
 							onClick={onRemoveFavorite}
 						/>
 					)}
-					<img
-						alt="Movie poster"
-						className="rounded-t-md h-[300px]"
-						src={posterPath}
-						onClick={onClick}
-					/>
+					{posterPath ? (
+						<img
+							alt="Movie poster"
+							className="rounded-t-md h-[300px]"
+							src={posterPath}
+							onClick={onClick}
+						/>
+					) : (
+						<div className="h-[300px] flex items-center justify-center">
+							<FileImageIcon size={72} className="text-background" />
+						</div>
+					)}
 				</CardContent>
 				<CardHeader className="p-3" onClick={onClick}>
 					<CardTitle

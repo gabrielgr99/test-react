@@ -1,7 +1,7 @@
 type CardMovieProps = {
 	title: string,
 	voteAverage: string,
-	posterPath: string,
+	posterPath: string | null,
 	onAddFavorite?: () => void,
 	onRemoveFavorite: () => void,
 	isFavorite: boolean,

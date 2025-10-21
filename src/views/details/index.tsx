@@ -1,6 +1,6 @@
 import { VoteAverage } from "src/components/ui/vote-average";
 import { Button } from "src/components/ui/button";
-import { HeartIcon } from "lucide-react";
+import { FileImageIcon, HeartIcon, Image, ImageIcon } from "lucide-react";
 import { MovieDetailsLoading } from "./components/movie-details-loading";
 import { useMovieDetails } from "./hooks/use-movie-details";
 import { EmptyState } from "src/components/features/empty-state";
@@ -31,19 +31,26 @@ export function DetailsView() {
 
 	return (
 		<article className="flex gap-8">
-			<div className="bg-accent animate-pulse flex-1 rounded-lg h-[360px]">
-				<img
-					alt="Movie poster"
-					src={movie?.backdropPath}
-					className="w-full h-full rounded-lg object-cover opacity-0"
-					onLoad={(event) => {
-						event.currentTarget.style.opacity = '1';
-						event.currentTarget.parentElement!.style.animation = 'none';
-						event.currentTarget.parentElement!.style.height = 'auto';
-					}}
-					loading="lazy"
-				/>
-			</div>
+			{movie?.backdropPath ? (
+				<div className="bg-accent animate-pulse flex-1 rounded-lg h-[360px]">
+					<img
+						alt="Movie poster"
+						src={movie.backdropPath}
+						className="w-full h-full rounded-lg object-cover opacity-0"
+						onLoadStart={console.log}
+						onLoad={(event) => {
+							event.currentTarget.style.opacity = '1';
+							event.currentTarget.parentElement!.style.animation = 'none';
+							event.currentTarget.parentElement!.style.height = 'auto';
+						}}
+						loading="lazy"
+					/>
+				</div>
+			) : (
+				<div className="bg-accent flex-1 flex rounded-lg h-[360px] items-center justify-center">
+					<FileImageIcon size={72} className="text-muted-light" />
+				</div>
+			)}
 
 			<section className="flex-1">
 				<h2 className="scroll-m-20 mb-4 text-3xl font-bold tracking-tight first:mt-0">

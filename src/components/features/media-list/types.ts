@@ -1,7 +1,7 @@
 type MediaItem = {
 	id: number,
 	title: string,
-	posterPath: string,
+	posterPath: string | null,
 	voteAverage: number,
 	favorite?: boolean
 }

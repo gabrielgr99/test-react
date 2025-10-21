@@ -9,6 +9,6 @@ export const formatData = (data: GetPopularMoviesResponse[], favoriteMoviesId: n
 		title: movie.title,
 		voteAverage: movie.vote_average,
 		favorite: favoriteMoviesId.includes(movie.id),
-		posterPath: `${POSTER_PREFIX_URL}${movie.poster_path}`
+		posterPath: movie.poster_path ? `${POSTER_PREFIX_URL}${movie.poster_path}` : null
 	})) : []
 });
