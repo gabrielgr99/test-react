@@ -12,7 +12,7 @@ export default function NotFound() {
 				<h4 className="scroll-m-20 text-muted-foreground text-xl font-medium tracking-tight">
 					Página não encontrada
 				</h4>
-				<p className="text-muted-foreground text-sm" title="">
+				<p className="text-muted-foreground text-sm">
 					Ops, parece que não encontramos o que você procura, tente explorar alguns filmes
 				</p>
 			</div>

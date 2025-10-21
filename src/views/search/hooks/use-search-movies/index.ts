@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { redirect, useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import {
 	addFavoriteMovie,
 	getFavoriteMovies,
@@ -19,8 +19,6 @@ export function useSearchMovies() {
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 	const { onChangeSearchTerm } = useSearchMoviesContext();
-
-	if (!searchParams.get('query')) redirect('/');
 
 	const query = searchParams.get('query') || '';
 
