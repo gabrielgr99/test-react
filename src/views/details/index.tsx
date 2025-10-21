@@ -52,7 +52,11 @@ export function DetailsView() {
 
 				<ul className="flex gap-2 mb-4">
 					{movie?.genres.map(genre => (
-						<li key={genre.id} className="bg-primary text-foreground px-2 py-1 rounded-full text-xs">
+						<li
+							title={genre.name}
+							key={genre.id}
+							className="bg-primary text-foreground px-2 py-1 rounded-full text-xs"
+						>
 							{genre.name}
 						</li>
 					))}
@@ -71,7 +75,7 @@ export function DetailsView() {
 					<h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
 						Sinopse
 					</h4>
-					<p className="leading-7">
+					<p className="leading-7" aria-label={movie?.overview}>
 						{movie?.overview}
 					</p>
 				</div>
