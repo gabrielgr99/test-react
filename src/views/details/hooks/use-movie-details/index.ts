@@ -38,7 +38,7 @@ export function useMovieDetails() {
 	};
 
 	const addFavoriteMovieMutation = useMutation({
-		mutationFn: addFavoriteMovie,
+		mutationFn: (payload: AddFavoriteMovieParams) => addFavoriteMovie(payload),
 		onSuccess: (_, movie) => onSuccessAddFavoriteMovieMutate(movie)
 	});
 
@@ -70,7 +70,7 @@ export function useMovieDetails() {
 	};
 
 	const removeFavoriteMovieMutation = useMutation({
-		mutationFn: removeFavoriteMovie,
+		mutationFn: (id: number) => removeFavoriteMovie(id),
 		onSuccess: (_, movieId) => onSuccessRemoveFavoriteMovieMutate(movieId)
 	});
 
