@@ -92,7 +92,6 @@ describe('HomeView', () => {
 		expect(await screen.findByRole('heading', { name: 'Sem filmes por aqui' })).toBeInTheDocument();
 		expect(screen.getByRole('paragraph', { name: 'Ops, acho que tivemos um erro, por favor, tente novamente...' })).toBeInTheDocument();
 
-
 		await userEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
 		expect(spyGet).toHaveBeenCalledWith('/movie/popular', {
 			params: {

@@ -91,4 +91,17 @@ describe('SearchView', () => {
 
 		expect(navigateMock).toHaveBeenCalledWith(`/movie/${searchMoviesMock.results[0].id}`);
 	});
+	
+		test('should show empty state', async () => {
+			mock.onGet('/search/movie').reply(200, { ...searchMoviesMock, total_results: 0, results: [] });
+	
+			const spyGet = jest.spyOn(apiClient, 'get');
+	
+			render(<SearchViewComponent />);
+	
+			expect(await screen.findByRole('heading', { name: 'Nenhum filme encontrado' })).toBeInTheDocument();
+			expect(screen.getByRole('paragraph', { name: 'Ops, não econtramos nenhum filme com esse nome, tente outro!' })).toBeInTheDocument();
+		
+			expect(screen.queryByRole('button')).not.toBeInTheDocument();
+		});
 });
