@@ -33,8 +33,16 @@ describe('EmptyState', () => {
 		expect(onClickMock).toHaveBeenCalled();
 	});
 
-	test('should not show action button', () => {
+	test('should not show action button when do not have click action', () => {
 		render(<EmptyStateComponent onClick={undefined} />);
+
+		expect(screen.getByRole('heading', { name: 'Title' })).toBeInTheDocument();
+		expect(screen.getByRole('paragraph', { name: 'Description' })).toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: 'Action label' })).not.toBeInTheDocument();
+	});
+
+	test('should not show action button when do not have action label', () => {
+		render(<EmptyStateComponent actionLabel={undefined} />);
 
 		expect(screen.getByRole('heading', { name: 'Title' })).toBeInTheDocument();
 		expect(screen.getByRole('paragraph', { name: 'Description' })).toBeInTheDocument();
