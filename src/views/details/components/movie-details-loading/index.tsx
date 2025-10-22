@@ -2,8 +2,8 @@ import { Skeleton } from "src/components/ui/skeleton";
 
 export function MovieDetailsLoading() {
 	return (
-		<article className="flex gap-8">
-			<Skeleton className="flex-1 h-[360px]"/>
+		<article className="flex gap-8 flex-col md:flex-row">
+			<Skeleton className="flex-none md:flex-1 h-[360px]"/>
 
 			<section className="flex-1">
 				<Skeleton className="max-w-96 h-8 mb-4"/>
