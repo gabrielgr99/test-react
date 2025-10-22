@@ -3,6 +3,8 @@ import type { EmptyStateProps } from "./types";
 import { ClapperboardIcon } from "lucide-react";
 
 export function EmptyState({ onClick, actionLabel, description, title }: EmptyStateProps) {
+	const hasAction = onClick && actionLabel;
+
 	return (
 		<section className="flex flex-col items-center gap-6 mt-36">
 			<ClapperboardIcon size={48} className="text-[#7d72ad]"/>
@@ -14,7 +16,7 @@ export function EmptyState({ onClick, actionLabel, description, title }: EmptySt
 					{description}
 				</p>
 			</div>
-			{onClick && (
+			{hasAction && (
 				<Button onClick={onClick}>
 					{actionLabel}
 				</Button>

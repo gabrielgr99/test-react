@@ -19,7 +19,6 @@ export function SearchView() {
 		return <EmptyState
 			title="Nenhum filme encontrado"
 			description="Ops, não econtramos nenhum filme com esse nome, tente outro!"
-			actionLabel="Tentar novamente"
 		/>
 	}
 
