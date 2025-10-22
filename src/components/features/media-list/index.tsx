@@ -18,7 +18,7 @@ export function MediaList({
 	};
 
 	return (
-		<ul className="flex gap-4 flex-wrap">
+		<ul className="flex gap-4 flex-wrap justify-center">
 			{medias.map(({ favorite, ...media }, index) => (
 				<CardMovie
 					key={`${media.id}${index}`}
