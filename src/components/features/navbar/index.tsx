@@ -1,15 +1,20 @@
 import { ClapperboardIcon } from "lucide-react"
 import { buttonVariants } from "../../ui/button"
 import { Input } from "../../ui/input"
-import { NavLink } from "react-router"
+import { NavLink, useNavigate } from "react-router"
 import { useSearch } from "./hooks/use-search";
 
 function Navbar() {
 	const { onChangeSearchTerm, searchTerm } = useSearch();
+	const navigate = useNavigate();
 
 	return (
 		<header className="w-full border-b border-card flex justify-between items-center py-4 px-3 flex-col md:flex-row gap-4 md:h-">
-			<h3 className="scroll-m-20 text-2xl font-bold tracking-tight text-sun flex gap-2 items-center">
+			<h3
+				className="scroll-m-20 text-2xl font-bold tracking-tight text-sun flex gap-2 items-center cursor-pointer"
+				onClick={() => navigate('/')}
+				title="Ir para Home"
+			>
 				<ClapperboardIcon className="text-[#7d72ad]"/>
 				MovieDB
 			</h3>
