@@ -53,6 +53,12 @@ npm install
 npm run dev
 ```
 
+### Testando
+
+```bash
+npm test
+```
+
 Sua aplicação estará disponível em `http://localhost:1234`.
 
 ## Buildando para produção
