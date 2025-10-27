@@ -54,7 +54,7 @@ describe('Navbar', () => {
 		render(<NavbarComponent />);
 
 		expect(screen.getByRole('heading', { name: /MovieDB/ })).toBeInTheDocument();
-		expect(screen.getByRole('textbox', { name: 'Search movies' })).toBeInTheDocument();
+		expect(screen.getByRole('textbox', { name: 'Buscar filmes' })).toBeInTheDocument();
 		expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
 		expect(screen.getByRole('link', { name: 'Favoritos' })).toBeInTheDocument();
 	});
@@ -72,7 +72,7 @@ describe('Navbar', () => {
 	test('should search movie', async () => {
 		render(<NavbarComponent />);
 
-		await userEventSetup.type(screen.getByRole('textbox', { name: 'Search movies' }), 'Naruto');
+		await userEventSetup.type(screen.getByRole('textbox', { name: 'Buscar filmes' }), 'Naruto');
 
 		jest.advanceTimersByTime(500);
 
@@ -85,7 +85,7 @@ describe('Navbar', () => {
 
 		render(<NavbarComponent />);
 
-		await userEventSetup.type(screen.getByRole('textbox', { name: 'Search movies' }), ' infinita');
+		await userEventSetup.type(screen.getByRole('textbox', { name: 'Buscar filmes' }), ' infinita');
 
 		jest.advanceTimersByTime(500);
 
