@@ -1,3 +1,4 @@
 export type UseInfinityScrollParams = {
-	onTrigger: () => void
+	onTrigger: () => void,
+	enableTrigger?: boolean
 }

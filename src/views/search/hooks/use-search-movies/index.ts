@@ -86,14 +86,11 @@ export function useSearchMovies() {
 		onChangeSearchTerm('');
 		navigate(`/movie/${movieId}`);
 	};
-
-	const goToNextPage = () => {
-		if (hasNextPage && !isPopularMoviesFetching) {
-			fetchNextPage()
-		}
-	}
 	
-	useInfinityScroll({ onTrigger: goToNextPage });
+	useInfinityScroll({
+		onTrigger: fetchNextPage,
+		enableTrigger: hasNextPage && !isPopularMoviesFetching
+	});
 
 	return {
 		query,

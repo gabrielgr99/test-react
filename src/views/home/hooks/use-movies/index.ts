@@ -74,13 +74,10 @@ export function useMovies() {
 
 	const onRedirect = (movieId: number) => navigate(`/movie/${movieId}`);
 
-	const goToNextPage = () => {
-		if (hasNextPage && !isPopularMoviesFetching) {
-			fetchNextPage()
-		}
-	}
-
-	useInfinityScroll({ onTrigger: goToNextPage });
+	useInfinityScroll({
+		onTrigger: fetchNextPage,
+		enableTrigger: hasNextPage && !isPopularMoviesFetching
+	});
 
 	return {
 		data: data!.results,
