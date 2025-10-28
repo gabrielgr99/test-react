@@ -8,11 +8,16 @@ function Navbar() {
 	const { onChangeSearchTerm, searchTerm } = useSearch();
 	const navigate = useNavigate();
 
+	const goToHome = () => {
+		onChangeSearchTerm('');
+		navigate('/');
+	};
+
 	return (
 		<header className="w-full border-b border-card flex justify-between items-center py-4 px-3 flex-col md:flex-row gap-4 md:h-">
 			<h3
 				className="scroll-m-20 text-2xl font-bold tracking-tight text-sun flex gap-2 items-center cursor-pointer"
-				onClick={() => navigate('/')}
+				onClick={goToHome}
 				title="Ir para Home"
 			>
 				<ClapperboardIcon className="text-[#7d72ad]"/>
