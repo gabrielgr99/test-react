@@ -1,4 +1,11 @@
-import { createContext, useCallback, useContext, useMemo, useState, type Dispatch, type PropsWithChildren } from "react";
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useMemo,
+	useState,
+	type PropsWithChildren
+} from "react";
 import type { SearchMoviesContextValue } from "./types";
 
 const INITAL_VALUE: SearchMoviesContextValue = {

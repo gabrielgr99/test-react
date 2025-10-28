@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SearchMoviesProvider } from "./contexts/use-search-movies";
 import { createRoot } from "react-dom/client";
 import router from "./routes";
+import { initClarity } from "./lib/clarity";
 
 export const links: LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,6 +36,8 @@ const queryClient = new QueryClient({
 });
 
 export function App() {
+	initClarity();
+
 	return (
 		<QueryClientProvider client={queryClient}>
 			<SearchMoviesProvider>
